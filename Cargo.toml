@@ -1,0 +1,19 @@
+[package]
+name = "aoc23"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+members = [
+  "read_file",
+  "utils"
+]
+
+[profile.dev]
+opt-level = 3
+
+[dependencies]
+paste = "1.0.14"
+read_file = { path = "read_file" }
+seq-macro = "0.3.5"
+utils = { path = "utils" }
