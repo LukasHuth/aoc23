@@ -2,6 +2,7 @@ pub mod day1;
 pub mod day2;
 pub mod day3;
 pub mod day4;
+pub mod day5;
 
 pub trait DayModule {
     fn run(&self) -> (usize, usize);
@@ -11,7 +12,7 @@ pub const DAYS: [Option<&dyn DayModule>; 25] = [
     Some(&day2::Day2),
     Some(&day3::Day3),
     Some(&day4::Day4),
-    None,
+    Some(&day5::Day5),
     None,
     None,
     None,
