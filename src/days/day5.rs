@@ -51,11 +51,13 @@ impl MapCollection {
             let length = map.source.end - val.start;
             let start_offset = val.start - map.source.start;
             let start = map.target_start + start_offset;
+            println!("sadly here! (1)");
             return Some(vec![start..(start+length), (val.start+length)..(val.end)]); //map.target_start + (val  - map.source.start);
         }
         if map.source.contains(&(val.end-1)) {
             let length = val.end - map.source.start;
             let start = map.target_start;
+            println!("sadly here! (2)");
             return Some(vec![start..(start+length), val.start..(val.end-length)]);
         }
         None
@@ -98,22 +100,42 @@ fn part2(file_content: &String) -> usize {
         map.push(map_1);
     }
     let mut current = seed_range;
-    println!("{:?} length: {}", current, get_length(current.clone()));
+    // println!("{:?} length: {}", current, get_length(current.clone()));
     for i in 0..=6 {
         let mut ranges: Vec<Range<usize>> = Vec::new();
         current.iter().for_each(|num| {
             ranges.append(&mut map[i].get_new_ranges(num.clone()));
         });
-        println!("{:?} length: {}", ranges, get_length(ranges.clone()));
-        current = ranges;
+        // println!("---------");
+        // println!("{:?}", map[i]);
+        // println!("{:?} length: {}", ranges, get_length(ranges.clone()));
+        // println!("---------");
+        current = optimize_ranges(ranges);
     }
     let mut smallest_range = current[0].clone();
     for i in 1..current.len() {
         if current[i].start < smallest_range.start { smallest_range = current[i].clone(); }
     }
     let result = smallest_range.start;
-    println!("Part1: {result}");
+    println!("Part2: {result}");
     result
+}
+pub(crate) fn optimize_ranges(arr: Vec<Range<usize>>) -> Vec<Range<usize>> {
+    let mut ranges: Vec<Range<usize>> = Vec::new();
+    for range in arr {
+        let mut edited = false;
+        for walked_range in ranges.iter_mut() {
+            if walked_range.start == range.end {
+                walked_range.start = range.start;
+                edited = true;
+                break;
+            }
+        }
+        if !edited {
+            ranges.push(range);
+        }
+    }
+    ranges
 }
 pub(crate) fn get_length(arr: Vec<Range<usize>>) -> usize {
     arr.iter().map(|range|range.len()).sum()
