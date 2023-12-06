@@ -1,16 +1,18 @@
 use crate::days;
 use paste;
 use seq_macro::seq;
+#[allow(unused)]
 fn get_function(num: usize) -> &'static Option<&'static dyn days::DayModule>{
     days::DAYS.get(num-1).unwrap()
 }
+#[allow(unused)]
 const RESULTS: [[usize; 2]; 25] = [
     [54940, 54208],
     [1734, 70387],
     [540131, 86879020],
     [21558, 10425665],
     [389056265, 137516820],
-    [0, 0],
+    [293046, 35150181],
     [0, 0],
     [0, 0],
     [0, 0],

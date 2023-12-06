@@ -137,6 +137,7 @@ pub(crate) fn optimize_ranges(arr: Vec<Range<usize>>) -> Vec<Range<usize>> {
     }
     ranges
 }
+#[allow(dead_code)]
 pub(crate) fn get_length(arr: Vec<Range<usize>>) -> usize {
     arr.iter().map(|range|range.len()).sum()
 }
