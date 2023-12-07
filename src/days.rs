@@ -1,9 +1,17 @@
-pub mod day1;
-pub mod day2;
-pub mod day3;
-pub mod day4;
-pub mod day5;
-pub mod day6;
+use seq_macro::seq;
+use paste::paste;
+
+macro_rules! import {
+    ($start:expr, $end: expr) => {
+        seq!{ N in $start..=$end {
+            paste! {
+                pub mod [< day N >];
+            }
+        }}
+    };
+}
+
+import!(1, 7);
 
 pub trait DayModule {
     fn run(&self) -> (usize, usize);
@@ -15,7 +23,7 @@ pub const DAYS: [Option<&dyn DayModule>; 25] = [
     Some(&day4::Day4),
     Some(&day5::Day5),
     Some(&day6::Day6),
-    None,
+    Some(&day7::Day7),
     None,
     None,
     None,
