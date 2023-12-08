@@ -8,9 +8,9 @@ impl super::DayModule for Day11 {
         (part1_res, part2_res)
     }
 }
-fn part1(file_content: &String) -> usize {
+fn part1(_file_content: &String) -> usize {
     0
 }
-fn part2(file_content: &String) -> usize {
+fn part2(_file_content: &String) -> usize {
     0
 }
