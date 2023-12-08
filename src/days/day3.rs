@@ -52,11 +52,9 @@ fn part2(file_input: &str) -> usize {
         for (x, c) in line.chars().enumerate() {
             let mut set: HashSet<Number> = HashSet::new();
             if c.is_digit(10) || c == '.' { continue; }
-            let adjacents = get_adjacent(x, y);
-            for adj in adjacents {
+            for adj in get_adjacent(x, y) {
                 for num in numbers.clone() {
                     if num.hits(adj[0], adj[1]) {
-                        // println!("{} as ({}|{})", num.number, adj[0], adj[1]);
                         set.insert(num);
                     }
                 }
@@ -90,10 +88,7 @@ fn get_numbers(file_input: &str) -> Vec<Number> {
     let mut numbers = Vec::new();
     for (y, line) in file_input.lines().enumerate() {
         let mut chars = line.chars().into_iter();
-        let mut x = 0;
-        let mut start = 0;
-        let mut len = 0;
-        let mut number = 0;
+        let ( mut x, mut start, mut len, mut number ) = (0, 0, 0, 0);
         let mut last_number = false;
         while let Some(c) = chars.next() {
             if c.is_digit(10) {

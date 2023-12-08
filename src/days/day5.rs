@@ -51,13 +51,11 @@ impl MapCollection {
             let length = map.source.end - val.start;
             let start_offset = val.start - map.source.start;
             let start = map.target_start + start_offset;
-            println!("sadly here! (1)");
             return Some(vec![start..(start+length), (val.start+length)..(val.end)]); //map.target_start + (val  - map.source.start);
         }
         if map.source.contains(&(val.end-1)) {
             let length = val.end - map.source.start;
             let start = map.target_start;
-            println!("sadly here! (2)");
             return Some(vec![start..(start+length), val.start..(val.end-length)]);
         }
         None

@@ -11,7 +11,6 @@ impl super::DayModule for Day4  {
 }
 #[derive(Debug)]
 struct Card {
-    // id: u32,
     winning: Vec<u32>,
     owning: Vec<u32>,
 }
@@ -43,14 +42,11 @@ fn part2(file_input: &str) -> usize {
         }
         for _ in 0..copy_amount {
             let mut current_index = 0;
-
             for node in copies.iter_mut() {
                 if current_index == new_copy_amount {
                     break; 
                 }
-
                 *node += 1;
-
                 current_index += 1;
             }
         }
@@ -65,13 +61,10 @@ impl utils::TransformFunction<Card> for Part1Generator {
     }
 }
 fn get_card(line: &str) -> Card {
-    let trimmed = line[5..].trim();
-    // let id = trimmed.split(":").next().unwrap().parse().unwrap();
-    let last_part = trimmed.split(":").last().unwrap().trim();
+    let last_part = line[5..].trim().split(":").last().unwrap().trim();
     let winning = last_part.split("|").next().unwrap().trim();
     let winning = winning.split(" ").filter(|s|!s.is_empty()).map(|s|s.parse().unwrap()).collect();
     let owning = last_part.split("|").last().unwrap().trim();
     let owning = owning.split(" ").filter(|s|!s.is_empty()).map(|s|s.parse().unwrap()).collect();
-    // Card { id, winning, owning }
     Card { winning, owning }
 }

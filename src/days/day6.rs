@@ -8,21 +8,9 @@ impl super::DayModule for Day6 {
     }
 }
 fn boat_distance(hold_time: usize, total_time: usize) -> usize {
-    // let acceleration_distance = (hold_time*(hold_time+1))/2;
     let distance_with_full_speed = (total_time - hold_time) * hold_time;
-    // acceleration_distance + distance_with_full_speed
     distance_with_full_speed
 }
-/*
-fn find_hold_time(total_time: usize, distance: usize) -> Vec<usize> {
-    let mut res = Vec::new();
-    for time in 0..=total_time {
-        let result = boat_distance(time, total_time);
-        if result > distance { res.push(time) }
-    }
-    res
-}
-    */
 fn find_hold_time(total_time: usize, distance: usize) -> usize {
     let mut res = 0;
     for time in 0..=total_time {
