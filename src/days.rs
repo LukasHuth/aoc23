@@ -11,7 +11,7 @@ macro_rules! import {
     };
 }
 
-import!(1, 7);
+import!(1, 25);
 
 pub trait DayModule {
     fn run(&self) -> (usize, usize);
@@ -24,22 +24,22 @@ pub const DAYS: [Option<&dyn DayModule>; 25] = [
     Some(&day5::Day5),
     Some(&day6::Day6),
     Some(&day7::Day7),
-    None,
-    None,
-    None,
-    None,
-    None,
-    None,
-    None,
-    None,
-    None,
-    None,
-    None,
-    None,
-    None,
-    None,
-    None,
-    None,
-    None,
-    None,
+    Some(&day8::Day8),
+    Some(&day9::Day9),
+    Some(&day10::Day10),
+    Some(&day11::Day11),
+    Some(&day12::Day12),
+    Some(&day13::Day13),
+    Some(&day14::Day14),
+    Some(&day15::Day15),
+    Some(&day16::Day16),
+    Some(&day17::Day17),
+    Some(&day18::Day18),
+    Some(&day19::Day19),
+    Some(&day20::Day20),
+    Some(&day21::Day21),
+    Some(&day22::Day22),
+    Some(&day23::Day23),
+    Some(&day24::Day24),
+    Some(&day25::Day25),
 ];
