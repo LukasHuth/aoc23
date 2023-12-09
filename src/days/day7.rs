@@ -101,8 +101,7 @@ impl HandVariants {
             *count += 1;
         }
         let mut set: Vec<usize> = map.iter().map(|(_, &co)| co).collect();
-        set.sort();
-        set.reverse();
+        set.sort_unstable_by(|a, b|b.cmp(a));
         match set.len() {
             1 => Self::FiveOfAKind,
             5 => Self::HighCard,
